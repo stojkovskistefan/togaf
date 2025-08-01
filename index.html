@@ -356,6 +356,33 @@
          font-size: 0.9em;
          color: #6c757d;
          }
+         #pause-overlay {
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          width: 100vw; height: 100vh;
+          background: rgba(0,0,0,0.4);
+          backdrop-filter: blur(4px);
+          z-index: 2000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: all;
+        }
+        #pause-overlay button {
+          font-size: 2rem;
+          padding: 1rem 2rem;
+          background: #ffc107;
+          color: #212529;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+          transition: background 0.2s;
+        }
+        #pause-overlay button:hover {
+          background: #e0a800;
+        }
       </style>
    </head>
    <body>
@@ -466,6 +493,10 @@
             </div>
          </div>
       </div>
+      <!-- Pause overlay -->
+      <div id="pause-overlay" style="display:none;">
+        <button id="resume-btn">Resume</button>
+      </div>
       <script>
          // Exam data structure
          let exams = {};
@@ -523,7 +554,7 @@
                  "D": "Phase B",
              },
              correctAnswer: "C",
-             explanation: "The Preliminary Phase in TOGAF’s ADM is dedicated to establishing the architecture framework and principles, including tailoring the framework and preparing the organization for architecture work.",
+             explanation: "The Preliminary Phase in TOGAF's ADM is dedicated to establishing the architecture framework and principles, including tailoring the framework and preparing the organization for architecture work.",
              scenarioSummary: null
          },
          {
@@ -613,7 +644,7 @@
                  "D": "A method for developing enterprise architectures",
              },
              correctAnswer: "D",
-             explanation: "The ADM (Architecture Development Method) is TOGAF’s core method for developing and managing enterprise architectures.",
+             explanation: "The ADM (Architecture Development Method) is TOGAF's core method for developing and managing enterprise architectures.",
              scenarioSummary: null
          },
          {
@@ -688,7 +719,7 @@
                  "D": "ADM",
              },
              correctAnswer: "B",
-             explanation: "Agile Enterprise Architecture is not a core component of TOGAF’s fundamental content.",
+             explanation: "Agile Enterprise Architecture is not a core component of TOGAF's fundamental content.",
              scenarioSummary: null
          },
          {
@@ -793,7 +824,7 @@
                  "D": "Introduction and Core Concepts - Architecture Development Method - ADM techniques - Applying the ADM - Architecture Content - Architecture Contracts",
              },
              correctAnswer: "C",
-             explanation: "These are the six core documents in TOGAF’s fundamental content.",
+             explanation: "These are the six core documents in TOGAF's fundamental content.",
              scenarioSummary: null
          },
          {
@@ -973,7 +1004,7 @@
                  "D": "Code development",
              },
              correctAnswer: "B",
-             explanation: "TOGAF’s main objective is to enable business transformation through effective enterprise architecture.",
+             explanation: "TOGAF's main objective is to enable business transformation through effective enterprise architecture.",
              scenarioSummary: null
          },
          {
@@ -1108,7 +1139,7 @@
                  "D": "To design network infrastructures",
              },
              correctAnswer: "C",
-             explanation: "The ADM is TOGAF’s core method for developing enterprise architectures.",
+             explanation: "The ADM is TOGAF's core method for developing enterprise architectures.",
              scenarioSummary: null
          },
          ],
@@ -1620,7 +1651,7 @@
                  "D": "A person who holds shares in a company.",
              },
              correctAnswer: "C",
-             explanation: "Stakeholders are anyone with an interest in the architecture’s outcome.",
+             explanation: "Stakeholders are anyone with an interest in the architecture's outcome.",
              scenarioSummary: null
          },
          {
@@ -1680,7 +1711,7 @@
                  "D": "To provide a comprehensive set of services for operational efficiency.",
              },
              correctAnswer: "C",
-             explanation: "The Open Group’s mission is to enable Boundaryless Information Flow™.",
+             explanation: "The Open Group's mission is to enable Boundaryless Information Flow™.",
              scenarioSummary: null
          },
          {
@@ -2329,7 +2360,7 @@
                  "D": "You recommend extending the loyalty platform to support direct-to-consumer digital rewards. You will review the existing Application Architecture and define the capabilities needed to support a direct-to-consumer relationship. This will require new interfaces to enable dynamic rewards. You will check with the Marketing Manager for additional requirements. You will recommend that the loyalty platform roadmap be adjusted to add these new capabilities to the shared loyalty platform.",
              },
              correctAnswer: "B",
-             explanation: "TOGAF emphasizes a holistic, stakeholder-driven approach to architecture development. Engaging the right stakeholders ensures that all business needs—including sustaining existing sales channels and enabling dynamic, personalized reward campaigns—are addressed. Strengthening the EA team with subject matter experts and conducting gap analysis aligns with TOGAF’s Preliminary and Architecture Vision phases, which stress capability-based planning and stakeholder engagement. This approach ensures the architecture is robust, future-proof, and governed according to enterprise needs, rather than focusing narrowly on technical fixes or isolated projects.",
+             explanation: "TOGAF emphasizes a holistic, stakeholder-driven approach to architecture development. Engaging the right stakeholders ensures that all business needs—including sustaining existing sales channels and enabling dynamic, personalized reward campaigns—are addressed. Strengthening the EA team with subject matter experts and conducting gap analysis aligns with TOGAF's Preliminary and Architecture Vision phases, which stress capability-based planning and stakeholder engagement. This approach ensures the architecture is robust, future-proof, and governed according to enterprise needs, rather than focusing narrowly on technical fixes or isolated projects.",
              scenarioSummary: "You are a lead architect working with the Enterprise Architecture (EA) team at a multinational financial services firm called FinServ Corp. Your personal responsibility within the EA team is the customer loyalty platform. The EA team has received several requests for architecture work from the marketing and digital customer experience teams, but the assessment has been that the EA team does not have the capability to assist. Consequently, the marketing team was advised to seek help externally by using consultants more experienced with digital marketing and customer loyalty platforms. One of the Marketing Managers has raised a concern that the consultants in their proposal have not addressed the business need to sustain existing sales channels. Instead, the proposal has focused on experiments in digital marketing strategies and customer engagement. In addition, the Marketing Manager wants to know how to address fundamental changes in customer engagement for one of the experiments. For example, existing loyalty program workflows assume a static reward structure, which won't be effective for dynamic, personalized reward campaigns."
          },
          {
@@ -2344,7 +2375,7 @@
                  "D": "You recommend establishing an architecture development project to provide standardized APls for accessing the shared patient engagement platform. This will provide a reliable service that can be accessed by the digital health service experiments. These API interfaces should draw on available industry standard approaches to support a long-term solution. This can be added to the existing patient engagement platform roadmap while protecting the planned efficiency gains.",
              },
              correctAnswer: "B",
-             explanation: "TOGAF’s ADM encourages the development of multiple candidate architectures and the use of transition architectures to manage risk and uncertainty. By identifying multiple options and linking decisions and outcomes, the architecture can be optimized for different stakeholder concerns. Planning transitions minimizes risk and ensures adaptability, aligning with TOGAF’s principles of stakeholder engagement, risk management, and incremental value delivery.",
+             explanation: "TOGAF's ADM encourages the development of multiple candidate architectures and the use of transition architectures to manage risk and uncertainty. By identifying multiple options and linking decisions and outcomes, the architecture can be optimized for different stakeholder concerns. Planning transitions minimizes risk and ensures adaptability, aligning with TOGAF's principles of stakeholder engagement, risk management, and incremental value delivery.",
              scenarioSummary: "You are a lead architect working with the Enterprise Architecture (EA) team at the multinational healthcare technology firm, HealthTech Inc. Your personal responsibility within the EA team is the patient engagement platform with an architecture to support portfolio approach. The ongoing roadmap for the patient engagement platform is focused on incremental efficiency gains with healthcare providers and providing localized health monitoring services with changes for language, different healthcare regulations, and integrated telemedicine support. As part of the ongoing Digital Transformation, two of the product lines have now released digital health services and virtual consultations surrounding traditional healthcare services. Both product lines have faced difficulty managing subscriptions and follow-up consultations in the patient engagement platform. The Product Manager is responsible for a new health service that will be offered directly to patients. It has been proposed that this be supported by a stand-alone patient engagement system that supports direct engagement with patients. The Product Manager is concerned about the long-term architecture, especially given that in the future, physical and digital health services will share the same patient interaction and support channels."
          },
          {
@@ -2359,7 +2390,7 @@
                  "D": "You advise that a comprehensive security orientation and training be given to the deployment team to ensure the accurate setup, configuration, and management of the new systems. During the Data Architecture phase, risk mitigation strategies should be employed to gauge the organization's risk tolerance. If the perceived risk exceeds the organization's comfort level, a recommendation to deploy redundant systems as a risk countermeasure should be made.",
              },
              correctAnswer: "C",
-             explanation: "TOGAF recommends integrating risk and security analysis into the Architecture Roadmap and work packages. Outlining the roadmap, assessing security and risk implications for identified gaps, and developing a risk mitigation plan ensures that stakeholder concerns are addressed and risks are managed throughout the transformation. This approach aligns with TOGAF’s ADM Phases E and F, which focus on gap analysis, risk management, and roadmap development.",
+             explanation: "TOGAF recommends integrating risk and security analysis into the Architecture Roadmap and work packages. Outlining the roadmap, assessing security and risk implications for identified gaps, and developing a risk mitigation plan ensures that stakeholder concerns are addressed and risks are managed throughout the transformation. This approach aligns with TOGAF's ADM Phases E and F, which focus on gap analysis, risk management, and roadmap development.",
              scenarioSummary: "You are the Lead Architect at a global pharmaceutical company, XedMedCo. The company has research labs in 15 countries and distributes its products worldwide. It operates under four main divisions, each focusing on a different therapeutic area. Each division has historically functioned autonomously, with distinct research methodologies and minimal shared data. However, they all report financial and HR metrics to the central corporate office. A recent proposal from an external consultancy suggests a restructuring to promote the sharing of research data across divisions. This would necessitate the creation of unified research data systems and patient trial databases. XedMedCo has a well-established Enterprise Architecture practice, grounded in the TOGAF Standard. The CIO sponsors the Enterprise Architecture initiative. A Statement of Architecture Work has been greenlit, and the Enterprise Architecture team has secured the consensus of primary stakeholders to devise a Target Architecture to validate the proposed benefits. Several domain architectures have been ratified, revealing a set of gaps. During the latest executive meeting, which included representatives from all divisions, concerns were voiced about the potential risks and security implications of this cross-divisional data sharing initiative."
          },
          {
@@ -2389,7 +2420,7 @@
                  "D": "You would focus on where the current business processes-such as organizational design, business procedures, and locations-fail to meet the company's objectives for time-to-market, customer satisfaction, and cost control. You would identify specific changes that would improve service speed, customer experience, and cost efficiency. Finally, you would assess whether stakeholders believe the proposed changes are worth the effort and investment.",
              },
              correctAnswer: "C",
-             explanation: "TOGAF’s Business Architecture techniques include capability mapping, value streams, and gap analysis. Modeling business capabilities, value streams, and creating architecture views for the target state ensures alignment with business goals. Referencing the TOGAF Series Guides and creating an integrated Business Architecture provides a comprehensive approach to developing the target architecture.",
+             explanation: "TOGAF's Business Architecture techniques include capability mapping, value streams, and gap analysis. Modeling business capabilities, value streams, and creating architecture views for the target state ensures alignment with business goals. Referencing the TOGAF Series Guides and creating an integrated Business Architecture provides a comprehensive approach to developing the target architecture.",
              scenarioSummary: "You are a senior enterprise architect working with the IT architecture team at a global financial services company. The company has successfully implemented the initial phases of its Digital Banking Transformation strategy, enabling it to offer a range of digital services across multiple banking divisions. The company's architecture now includes the following systems: A traditional branch-based CRM system for customer engagement and product sales, focusing on in-branch interactions and loan services. The CRM is heavily reliant on manual processes and direct human interaction. A web-based customer service CRM, designed for online banking customers. This CRM allows customers to manage their accounts and request support online but has limited features for cross-channel promotions or personalized offers. A chatbot and AI-powered CRM that supports customer interactions via chat and mobile apps. This system offers advanced data analytics and can handle basic inquiries and transactions but is limited in its ability to handle complex banking requests. A legacy call center CRM system, which supports customers calling into the bank for inquiries, but the system is not integrated with newer digital channels, creating gaps in customer service and data consistency. As part of the digital transformation initiative, the company is now moving forward with integrating all of its CRM systems into a unified customer engagement platform. You are responsible for updating the CRM architecture to support both physical and digital banking services, taking into account the core motivations of key stakeholders: the digital product managers, focused on time-to-market; the branch operations team, focused on improving customer satisfaction; and the corporate IT team, driven by cost optimization."
          },
          {
@@ -2404,7 +2435,7 @@
                  "D": "You recommend that the Enterprise Architecture team reviews existing projects and deliverables to address the gaps identified in the architecture domains. Each domain architect will propose specific projects to address their gaps and consider revising the scope of ongoing projects. The collective work in each domain will be consolidated into the Implementation and Migration Plan. The timeline for deliverables will be documented in the Architecture Roadmap.",
              },
              correctAnswer: "B",
-             explanation: "TOGAF recommends organizing work into work packages, planning transition architectures, and documenting these in the Architecture Roadmap. Identifying dependencies, assessing value/effort/risk, and planning transition architectures ensures incremental value delivery and risk management. This approach aligns with TOGAF’s ADM Phases E and F, which focus on implementation and migration planning.",
+             explanation: "TOGAF recommends organizing work into work packages, planning transition architectures, and documenting these in the Architecture Roadmap. Identifying dependencies, assessing value/effort/risk, and planning transition architectures ensures incremental value delivery and risk management. This approach aligns with TOGAF's ADM Phases E and F, which focus on implementation and migration planning.",
              scenarioSummary: "You are an Enterprise Architect recently hired by a global manufacturing company that has been in operation for over 100 years. The company has expanded through numerous mergers and acquisitions, leading to duplicated systems, inconsistent data, and a reliance on custom-built integrations. The company has an established Enterprise Architecture team that adopts the TOGAF Standard as the foundation for its practices. The CIO sponsors the Enterprise Architecture program. The IT department is sizable and typically manages over 150 infrastructure and service projects concurrently. At the latest board meeting, the CEO expressed concern that competitors are leveraging advanced technologies to offer faster production times, lower costs, and enhanced customer experiences through digital platforms. In response, the CIO has initiated a digital transformation project to revolutionize the company's manufacturing processes. The goal is to implement next-generation manufacturing technologies. She has determined that the company's core infrastructure and services need to be streamlined to support this transformation. The CIO emphasizes that the core infrastructure must be adaptable to continual changes in technology and the business environment. You have been assigned to the core infrastructure and services project. An Architecture Vision has been approved, allowing the development of a Target Architecture. A set of domain architectures and a gap analysis have been completed and approved by stakeholders. The Enterprise Architecture team has identified the necessary work to implement the changes."
          },
          {
@@ -2451,7 +2482,7 @@
                  "D": "You would determine where the application and data architecture fail to meet expectations for product time-to-market and customer satisfaction. You would focus on changes to the information flows that could improve both areas while also driving down infrastructure costs. Once identified, you would assess the priorities of the stakeholders in relation to application, data management, and infrastructure improvements. Finally, you would estimate the cost of implementing these changes in the application and data architecture, considering both the in-house platform and external integrations.",
              },
              correctAnswer: "A",
-             explanation: "TOGAF’s ADM requires modeling the current and target architectures, identifying gaps, and creating a roadmap. By understanding the current state of all systems and integrations, and developing a revised target architecture, you can identify necessary changes to reduce costs, improve satisfaction, and meet regulatory requirements. Documenting gaps and creating a roadmap ensures controlled, value-driven change.",
+             explanation: "TOGAF's ADM requires modeling the current and target architectures, identifying gaps, and creating a roadmap. By understanding the current state of all systems and integrations, and developing a revised target architecture, you can identify necessary changes to reduce costs, improve satisfaction, and meet regulatory requirements. Documenting gaps and creating a roadmap ensures controlled, value-driven change.",
              scenarioSummary: "You are a senior architect working with the Enterprise Architecture (EA) team at a global financial services company. Your primary responsibility is managing the in-house digital banking platform and aligning it with the company's strategic goals. Other EA team members are focused on supporting the core banking IT systems and improving customer interaction channels. The company is advancing its digital transformation, aiming to provide seamless digital financial services alongside its traditional banking products. Your role involves working closely with the digital banking product owners, development teams, and the Chief Technology Officer (CTO) to oversee architecture decisions. In previous architectural projects, you worked with external cloud platforms to develop a reference model for the banking capabilities, data flows, logical application models, and security architecture. You are currently updating the in-house digital banking roadmap. There are three primary stakeholder groups: the digital banking product managers (focused on speed to market), the operations team (focused on customer satisfaction), and corporate IT (focused on reducing long-term costs). From earlier work on the digital transformation strategy, it was clear that stakeholders were comfortable experimenting with cloud-based solutions but still preferred to retain control over the in-house banking platform. A critical consideration is meeting global regulatory requirements, including data sovereignty for customer information in specific regions. The EA team leader has met with key stakeholders and confirmed that customer satisfaction goals must be met before any new releases can proceed. However, the current approach consumes significant IT resources, which increases costs, and this issue needs to be addressed."
          },
          {
@@ -2511,7 +2542,7 @@
                  "D": "You will explain to the product managers the available options for extending the existing enterprise customer self-service platform to include the addition of digital services. You will confirm a project timeline that fits with the customer self-service platform roadmap and budget cycle. You will engage the same stakeholders as identified by the Stakeholder Map used by the customer self-service platform roadmap. You know you will need to engage with digital services subject matter experts to help fill in the details of direct-to-consumer digital services and third-party platform interfaces.",
              },
              correctAnswer: "A",
-             explanation: "TOGAF’s Preliminary phase emphasizes defining scope, identifying stakeholders, and ensuring the right expertise is involved. Mapping stakeholders and engaging subject matter experts sets the project up for success and addresses both traditional and digital service needs.",
+             explanation: "TOGAF's Preliminary phase emphasizes defining scope, identifying stakeholders, and ensuring the right expertise is involved. Mapping stakeholders and engaging subject matter experts sets the project up for success and addresses both traditional and digital service needs.",
              scenarioSummary: "You are a solutions architect working within the Enterprise Architecture (EA) team at the multinational telecommunications firm, TeleNet Inc. Your area of responsibility is the customer self-service platform. Within your personal area of responsibility, the customer self-service platform, you see the need to develop a new target architecture. The old drivers of efficiency and extending localized customer support services do not directly support the Digital Transformation. You know that there are fundamental customer engagement changes required to support the Digital Transformation. Several of the Product Managers (responsible for both traditional telecom services and new digital services) have raised concerns about poor customer engagement with the new experimental digital services and would like to know what the options are to improve it. They have also voiced a concern that in the future, the traditional and digital services will not be completely distinct in terms of the sales and support channel."
          },
          {
@@ -3006,19 +3037,27 @@
          // Pause/resume timer
          function togglePause() {
              const pauseBtn = document.getElementById('pause-btn');
-             
+             const pauseOverlay = document.getElementById('pause-overlay');
              if (isPaused) {
                  // Resume
                  totalPausedTime += Date.now() - pauseStartTime;
                  isPaused = false;
                  pauseBtn.textContent = 'Pause';
                  pauseBtn.classList.remove('paused');
+                 pauseOverlay.style.display = 'none';
+                 // Restore focus to pause button
+                 pauseBtn.focus();
              } else {
                  // Pause
                  pauseStartTime = Date.now();
                  isPaused = true;
                  pauseBtn.textContent = 'Resume';
                  pauseBtn.classList.add('paused');
+                 pauseOverlay.style.display = 'flex';
+                 // Focus resume button for accessibility
+                 setTimeout(() => {
+                   document.getElementById('resume-btn').focus();
+                 }, 0);
              }
          }
          
@@ -3219,6 +3258,28 @@
                          togglePause();
                          break;
                  }
+             });
+             // Pause overlay resume button
+             document.getElementById('resume-btn').addEventListener('click', togglePause);
+             // Block all pointer events except resume button when paused
+             document.getElementById('pause-overlay').addEventListener('click', (e) => {
+               if (e.target === document.getElementById('pause-overlay')) {
+                 e.stopPropagation();
+                 e.preventDefault();
+               }
+             });
+             // Keyboard shortcuts: block all except resume when paused
+             document.addEventListener('keydown', (event) => {
+               if (isPaused) {
+                 // Only allow Enter or Space to resume
+                 if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+                   event.preventDefault();
+                   togglePause();
+                 } else {
+                   event.preventDefault();
+                   return;
+                 }
+               }
              });
          });
       </script>
